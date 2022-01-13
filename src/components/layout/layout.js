@@ -1,21 +1,25 @@
-import Footer from "./footer";
-import Header from "./header";
+import React from 'react'
 
-import Aside from "./aside";
+import Aside, { isDrawerOpenContext } from "./aside";
 import Nav from "./nav";
 import { Box, Container } from "@mui/material";
+import MyAppBar from "./appbar";
 
 export default function Layout({ children }) {
+  const [isDrawerOpen, setIsDrawerOpen] = React.useState(false)
   return (
-    <Box sx={{ display: "flex" , flexGrow: 1}}>
-      <Aside>
-        <Nav />
-      </Aside>
-      <Container
-        component="main"
+    <isDrawerOpenContext.Provider value={{isDrawerOpen, setIsDrawerOpen}}>
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: { md: "row", xs: "column" },
+          flexGrow: 1,
+        }}
       >
-        {children}
-      </Container>
-    </Box>
+        <MyAppBar />
+        <Aside />
+        <Container component="main">{children}</Container>
+      </Box>
+    </isDrawerOpenContext.Provider>
   );
 }

@@ -73,13 +73,13 @@ export default function Works(props) {
         <Box
           sx={{
             display: "grid",
-            gridTemplateColumns: "repeat(3, minmax(200px, 1fr))",
+            gridTemplateColumns: "repeat(3, minmax(150px, 1fr))",
           }}
         >
-          {filteredWorks.map((work) => (
+          {filteredWorks.filter(work=> work.image).map((work) => (
             <Box key={work.id}>
               {/* <Link href={`/works/${work.id}`}> */}
-              {work.image ? (
+              {work.image && (
                 <>
                   <Button>
                     <Image
@@ -94,9 +94,11 @@ export default function Works(props) {
                     />
                   </Button>
                 </>
-              ) : (
-                <Skeleton variant="rectangular" width={550} height={400} />
-              )}
+              )
+              //  : (
+              //   <Skeleton variant="rectangular" width={550} height={400} />
+              // )
+              }
 
               {/* </Link> */}
             </Box>

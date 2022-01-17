@@ -6,7 +6,7 @@ import Fade from "@mui/material/Fade";
 import Image from "next/image";
 import CloseIcon from "@mui/icons-material/Close";
 import IconButton from "@mui/material/IconButton";
-import { Typography } from "@mui/material";
+import { CircularProgress, Typography } from "@mui/material";
 
 export default function ModalImage({ image, open, handleClose }) {
   const style = {
@@ -15,12 +15,12 @@ export default function ModalImage({ image, open, handleClose }) {
     left: "50%",
     transform: "translate(-50%, -50%)",
     height: "100vh",
-    width: '100%',
+    width: "100%",
     // color:'common.white'
     // //   width: 400,
-    bgcolor: 'background.paper',
+    bgcolor: "background.paper",
     //   boxShadow: 24,
-      // p: 4,
+    // p: 4,
   };
   return (
     <Box>
@@ -34,29 +34,36 @@ export default function ModalImage({ image, open, handleClose }) {
         BackdropProps={{
           timeout: 500,
         }}
-        >
-          <>
-        <Fade in={open}>
-          <Box sx={style} >
+      >
+        <>
+          <Fade in={open}>
+            <Box sx={style}>
+              <Backdrop
+              open={open}
+              >
+                <CircularProgress color="inherit" />
+              </Backdrop>
 
-            <Image
-              // zIndex='drawer'
-              src={image.url}
-              width={image.width}
-              height={image.height}
-              layout="fill"
-              objectFit="contain"
+              <Image
+                // zIndex='drawer'
+                src={image.url}
+                width={image.width}
+                height={image.height}
+                layout="fill"
+                objectFit="contain"
+                placeholder="blur"
+                blurDataURL="/placeholder.png"
               />
-          </Box>
-        </Fade>
-        <IconButton
-          // color="text.primary"
-          sx={{ position: "absolute", top: 0, right: 0 }}
-          onClick={handleClose}
+            </Box>
+          </Fade>
+          <IconButton
+            // color="text.primary"
+            sx={{ position: "absolute", top: 0, right: 0 }}
+            onClick={handleClose}
           >
-          <CloseIcon />
-        </IconButton>
-          </>
+            <CloseIcon />
+          </IconButton>
+        </>
       </Modal>
     </Box>
   );

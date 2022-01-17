@@ -6,6 +6,7 @@ import React from "react";
 import Head from "next/head";
 import useTranslation from "next-translate/useTranslation";
 import { Avatar, Box, Button, Skeleton, Typography } from "@mui/material";
+import ModalImage from "@src/components/widgets/modal-image";
 
 export default function Works(props) {
   const [filteredWorks, setFilteredWorks] = React.useState(props.works);
@@ -25,62 +26,89 @@ export default function Works(props) {
     );
   };
 
+  const [open, setOpen] = React.useState(false);
+  const [selectedImage, setSelectedImage] = React.useState(null);
+  const handleOpen = (image) => {
+    setOpen(true);
+    setSelectedImage(image);
+  };
+  const handleClose = () => setOpen(false);
+
   return (
     <>
       <Head>
         <title>{process.env.NEXT_PUBLIC_SITE_TITLE} | Works</title>
       </Head>
       {/* Works Filter */}
-      <Box sx={{py:2}}>
+      <Box sx={{ py: 2 }}>
+        <Button
+          color={filter === "reset" ? "primary" : "inherit"}
+          onClick={() => handleFilterWorksByCategory("reset")}
+        >
+          <Avatar sx={{ mr: 2 }}>{t("all_works")}</Avatar>
+          {t("all_works")}
+        </Button>
+        {props.categories.map((category) => (
           <Button
-            color={filter === "reset" ? "primary" : "inherit"}
-            onClick={() => handleFilterWorksByCategory("reset")}
+            key={category.id}
+            onClick={() => handleFilterWorksByCategory(category.id)}
+            color={filter === category.id ? "primary" : "inherit"}
+            // className={filter === category.id ? styles.filterSelected : ''}
           >
-            <Avatar sx={{mr:2}}>{t("all_works")}</Avatar>
-            {t("all_works")}
+            <Avatar sx={{ mr: 2 }}>
+              <Image
+                src={category.featuredImage.url}
+                width={50}
+                height={50}
+                objectFit="cover"
+                alt={category.title}
+              />
+            </Avatar>
+            {category.title}
           </Button>
-          {props.categories.map((category) => (
-            <Button
-              key={category.id}
-              onClick={() => handleFilterWorksByCategory(category.id)}
-              color={filter === category.id ? "primary" : "inherit"}
-              // className={filter === category.id ? styles.filterSelected : ''}
-            >
-              <Avatar sx={{ mr: 2 }}>
-                <Image
-                  src={category.featuredImage.url}
-                  width={50}
-                  height={50}
-                  objectFit="cover"
-                  alt={category.title}
-                />
-              </Avatar>
-              {category.title}
-            </Button>
-          ))}
+        ))}
       </Box>
       {/* Works Grid */}
       {filteredWorks.length > 0 ? (
-        <Box sx={{display: 'grid', gridTemplateColumns:'repeat(3, minmax(200px, 1fr))'}}>
+        <Box
+          sx={{
+            display: "grid",
+            gridTemplateColumns: "repeat(3, minmax(200px, 1fr))",
+          }}
+        >
           {filteredWorks.map((work) => (
             <Box key={work.id}>
-              <Link href={`/works/${work.id}`}>
-                {work.image ? (
-                  <Image
-                    src={work.image.url}
-                    alt={work.title}
-                    width={550}
-                    height={400}
-                    objectFit="cover"
-                    placeholder="blur"
-                    blurDataURL="/placeholder.png"
-                  />
-                ) : (
-                  <Skeleton variant="rectangular" width={550} height={400} />
-                )}
-              </Link>
+              {/* <Link href={`/works/${work.id}`}> */}
+              {work.image ? (
+                <>
+                  <Button>
+                    <Image
+                      src={work.image.url}
+                      alt={work.title}
+                      width={550}
+                      height={400}
+                      objectFit="cover"
+                      placeholder="blur"
+                      blurDataURL="/placeholder.png"
+                      onClick={() => handleOpen(work.image)}
+                    />
+                  </Button>
+                </>
+              ) : (
+                <Skeleton variant="rectangular" width={550} height={400} />
+              )}
+
+              {/* </Link> */}
             </Box>
           ))}
+          {open && (
+            <ModalImage
+              image={selectedImage}
+              handleOpen={handleOpen}
+              handleClose={handleClose}
+              open={open}
+            />
+          )}
         </Box>
       ) : (
         <Typography variant="body2">{t("no_results")}</Typography>

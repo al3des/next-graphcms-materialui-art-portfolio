@@ -29,18 +29,18 @@ export default function Nav(props) {
   return (
     <Box sx={{ p: 2 }}>
       <List onClick={()=>setIsDrawerOpen(false)}>
-        <ListItem sx={{display: {xs: 'block', md: 'none'}}}>
+        <ListItem>
           <IconButton onClick={()=>setIsDrawerOpen(false)}>
             <ArrowBackIosIcon />
           </IconButton>
         </ListItem>
-        <ListItem sx={{display: {md: 'block', xs: 'none'}}}>
+        {/* <ListItem sx={{display: {md: 'block', xs: 'none'}}}>
           <Link underline="none" href="/">
             <Typography variant="h5" component="h2">
               {SITE_NAME}
             </Typography>
           </Link>
-        </ListItem>
+        </ListItem> */}
         <ListItem>
           <Link
             sx={{

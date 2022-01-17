@@ -19,11 +19,11 @@ export default function Aside({ children }) {
   const { isDrawerOpen } = React.useContext(isDrawerOpenContext);
   return (
     <Box>
-      <Drawer
+      {/* <Drawer
         variant="permanent"
         anchor="left"
         sx={{
-          display: { xs: "none", md: "block" },
+          // display: { xs: "none", md: "block" },
           flexShrink: 0,
           width: DRAWER_WIDTH,
           "& .MuiDrawer-paper": {
@@ -33,12 +33,12 @@ export default function Aside({ children }) {
         position="fixed"
       >
         <Nav />
-      </Drawer>
+      </Drawer> */}
       <Drawer
         variant="temporary"
         open={isDrawerOpen}
         sx={{
-          display: { xs: "block", md: "none" },
+          // display: { xs: "block", md: "none" },
           width: DRAWER_WIDTH,
           "& .MuiDrawer-paper": {
             width: DRAWER_WIDTH,

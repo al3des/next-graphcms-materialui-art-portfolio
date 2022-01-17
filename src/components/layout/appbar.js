@@ -17,20 +17,24 @@ export default function MyAppBar() {
     React.useContext(isDrawerOpenContext);
 
   return (
-    <Box sx={{ flexGrow: 1, display: { xs: "block", md: "none" } }}>
+    <Box
+      sx={{
+        flexGrow: 1,
+        // display: { xs: "block", md: "none" },
+      }}
+    >
       <AppBar position="static">
         <Toolbar>
           <IconButton
             size="large"
             edge="start"
-            color="inherit"
             aria-label="menu"
             sx={{ mr: 2 }}
             onClick={() => setIsDrawerOpen(true)}
           >
             <MenuIcon />
           </IconButton>
-          <Link href="/" color="primary.contrastText" underline='none'>
+          <Link href="/" color="text.primary" underline="none">
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
               {SITE_NAME}
             </Typography>

@@ -22,6 +22,7 @@ const recentProjects = await getRecentProjects(ctx.locale)
   return {
     props: {
       recentProjects
-    }
+    },
+    revalidate: 1000
   }
 }

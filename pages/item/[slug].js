@@ -62,7 +62,7 @@ export default function Item(props) {
           </Box>
           <Box>
             {props.taller.description.split("\n").map((p) => (
-              <Typography variant="body1" style={{ margin: "1em 0" }}>
+              <Typography key={p.id} variant="body1" style={{ margin: "1em 0" }}>
                 {p}
               </Typography>
             ))}

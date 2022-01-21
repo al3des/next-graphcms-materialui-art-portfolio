@@ -24,7 +24,6 @@ export default function ProductionsList(props) {
 }
 
 export async function getStaticProps(context) {
-  const { locale } = context;
   const productions = await getAllProductionsByType(
     context.params.type,
     context.locale
@@ -37,7 +36,7 @@ export async function getStaticProps(context) {
 }
 
 export async function getStaticPaths() {
-  const paths = ["exhibicion", "taller_humano", "estampida"].map((type) => ({
+  const paths = ["exhibicion", "taller_humano", "estampida", 'curatorship'].map((type) => ({
     params: { type },
   }));
   return {

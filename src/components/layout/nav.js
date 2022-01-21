@@ -34,13 +34,6 @@ export default function Nav(props) {
             <ArrowBackIosIcon />
           </IconButton>
         </ListItem>
-        {/* <ListItem sx={{display: {md: 'block', xs: 'none'}}}>
-          <Link underline="none" href="/">
-            <Typography variant="h5" component="h2">
-              {SITE_NAME}
-            </Typography>
-          </Link>
-        </ListItem> */}
         <ListItem>
           <Link
             sx={{
@@ -50,6 +43,17 @@ export default function Nav(props) {
             href="/works"
           >
             {t("works")}
+          </Link>
+        </ListItem>
+        <ListItem>
+          <Link
+            sx={{
+              fontWeight: router.asPath.includes("/curatorship") ? "bold" : "normal",
+            }}
+            underline="none"
+            href="/prod/curatorship"
+          >
+            {t("curatorship")}
           </Link>
         </ListItem>
         <ListItem>

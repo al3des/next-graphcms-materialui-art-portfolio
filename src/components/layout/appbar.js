@@ -38,7 +38,7 @@ export default function MyAppBar() {
                 #000 10px,
                 #000 20px
               );`,
-                height: "3px",
+                height: "1px",
                 width: "100%",
                 position: "absolute",
                 top: 0,
@@ -63,6 +63,25 @@ export default function MyAppBar() {
           <Typography sx={{ justifySelf: "flex-end" }}>
             Site under construction
           </Typography>
+          <Box
+            sx={{
+              "::after": {
+                content: `''`,
+                background: `repeating-linear-gradient(
+                to right,
+                #f6ba52,
+                #f6ba52 10px,
+                #000 10px,
+                #000 20px
+              );`,
+                height: "1px",
+                width: "100%",
+                position: "absolute",
+                bottom: 0,
+                left: 0,
+              },
+            }}
+          ></Box>
         </Toolbar>
       </AppBar>
     </Box>

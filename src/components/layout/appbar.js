@@ -24,7 +24,28 @@ export default function MyAppBar() {
       }}
     >
       <AppBar position="static">
-        <Toolbar>
+        <Toolbar sx={{
+              display: 'flex',
+        }}>
+          <Box
+            sx={{
+              "::before": {
+                content: `''`,
+                background: `repeating-linear-gradient(
+                to right,
+                #f6ba52,
+                #f6ba52 10px,
+                #000 10px,
+                #000 20px
+              );`,
+                height: "3px",
+                width: "100%",
+                position: "absolute",
+                top: 0,
+                left: 0,
+              },
+            }}
+          ></Box>
           <IconButton
             size="large"
             edge="start"
@@ -34,11 +55,14 @@ export default function MyAppBar() {
           >
             <MenuIcon />
           </IconButton>
-          <Link href="/" color="text.primary" underline="none">
-            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+          <Link href="/" color="text.primary" underline="none" sx={{ flexGrow: 1 }}>
+            <Typography variant="h6" component="div" >
               {SITE_NAME}
             </Typography>
           </Link>
+          <Typography sx={{ justifySelf: "flex-end" }}>
+            Site under construction
+          </Typography>
         </Toolbar>
       </AppBar>
     </Box>

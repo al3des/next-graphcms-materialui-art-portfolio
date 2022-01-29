@@ -12,6 +12,7 @@ export default function Home(props) {
       <Typography variant="h5" component="h2">
         {t("recent_projects")}
       </Typography>
+      
       <RecentProjects projects={props.recentProjects} />
     </Box>
   );

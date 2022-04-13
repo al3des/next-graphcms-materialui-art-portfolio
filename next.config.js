@@ -2,7 +2,7 @@ const nextTranslate = require("next-translate");
 
 const config = {
   images: {
-    domains: ["media.graphcms.com", "via.placeholder.com"],
+    domains: ["media.graphcms.com","media.graphassets.com", "via.placeholder.com"],
   },
   env: {
     NEXT_PUBLIC_SITE_TITLE: "Paloma Zamorano",
